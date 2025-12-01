@@ -7,10 +7,7 @@
     lilBool _UseDecal1; \
     float4 _Decal1Color; \
     float4 _Decal1Tex_ST; \
-    float4 _Decal1Tex_SR; \
     float _Decal1TexAngle; \
-    float4 _Decal1DecalAnimation; \
-    float4 _Decal1DecalSubParam; \
     lilBool _Decal1IsDecal; \
     lilBool _Decal1IsLeftOnly; \
     lilBool _Decal1IsRightOnly; \
@@ -22,10 +19,7 @@
     lilBool _UseDecal2; \
     float4 _Decal2Color; \
     float4 _Decal2Tex_ST; \
-    float4 _Decal2Tex_SR; \
     float _Decal2TexAngle; \
-    float4 _Decal2DecalAnimation; \
-    float4 _Decal2DecalSubParam; \
     lilBool _Decal2IsDecal; \
     lilBool _Decal2IsLeftOnly; \
     lilBool _Decal2IsRightOnly; \
@@ -37,10 +31,7 @@
     lilBool _UseDecal3; \
     float4 _Decal3Color; \
     float4 _Decal3Tex_ST; \
-    float4 _Decal3Tex_SR; \
     float _Decal3TexAngle; \
-    float4 _Decal3DecalAnimation; \
-    float4 _Decal3DecalSubParam; \
     lilBool _Decal3IsDecal; \
     lilBool _Decal3IsLeftOnly; \
     lilBool _Decal3IsRightOnly; \
@@ -52,10 +43,7 @@
     lilBool _UseDecal4; \
     float4 _Decal4Color; \
     float4 _Decal4Tex_ST; \
-    float4 _Decal4Tex_SR; \
     float _Decal4TexAngle; \
-    float4 _Decal4DecalAnimation; \
-    float4 _Decal4DecalSubParam; \
     lilBool _Decal4IsDecal; \
     lilBool _Decal4IsLeftOnly; \
     lilBool _Decal4IsRightOnly; \
@@ -67,10 +55,7 @@
     lilBool _UseDecal5; \
     float4 _Decal5Color; \
     float4 _Decal5Tex_ST; \
-    float4 _Decal5Tex_SR; \
     float _Decal5TexAngle; \
-    float4 _Decal5DecalAnimation; \
-    float4 _Decal5DecalSubParam; \
     lilBool _Decal5IsDecal; \
     lilBool _Decal5IsLeftOnly; \
     lilBool _Decal5IsRightOnly; \
@@ -82,10 +67,7 @@
     lilBool _UseDecal6; \
     float4 _Decal6Color; \
     float4 _Decal6Tex_ST; \
-    float4 _Decal6Tex_SR; \
     float _Decal6TexAngle; \
-    float4 _Decal6DecalAnimation; \
-    float4 _Decal6DecalSubParam; \
     lilBool _Decal6IsDecal; \
     lilBool _Decal6IsLeftOnly; \
     lilBool _Decal6IsRightOnly; \
@@ -97,10 +79,7 @@
     lilBool _UseDecal7; \
     float4 _Decal7Color; \
     float4 _Decal7Tex_ST; \
-    float4 _Decal7Tex_SR; \
     float _Decal7TexAngle; \
-    float4 _Decal7DecalAnimation; \
-    float4 _Decal7DecalSubParam; \
     lilBool _Decal7IsDecal; \
     lilBool _Decal7IsLeftOnly; \
     lilBool _Decal7IsRightOnly; \
@@ -112,10 +91,7 @@
     lilBool _UseDecal8; \
     float4 _Decal8Color; \
     float4 _Decal8Tex_ST; \
-    float4 _Decal8Tex_SR; \
     float _Decal8TexAngle; \
-    float4 _Decal8DecalAnimation; \
-    float4 _Decal8DecalSubParam; \
     lilBool _Decal8IsDecal; \
     lilBool _Decal8IsLeftOnly; \
     lilBool _Decal8IsRightOnly; \
@@ -127,10 +103,7 @@
     lilBool _UseDecal9; \
     float4 _Decal9Color; \
     float4 _Decal9Tex_ST; \
-    float4 _Decal9Tex_SR; \
     float _Decal9TexAngle; \
-    float4 _Decal9DecalAnimation; \
-    float4 _Decal9DecalSubParam; \
     lilBool _Decal9IsDecal; \
     lilBool _Decal9IsLeftOnly; \
     lilBool _Decal9IsRightOnly; \
@@ -142,10 +115,7 @@
     lilBool _UseDecal10; \
     float4 _Decal10Color; \
     float4 _Decal10Tex_ST; \
-    float4 _Decal10Tex_SR; \
     float _Decal10TexAngle; \
-    float4 _Decal10DecalAnimation; \
-    float4 _Decal10DecalSubParam; \
     lilBool _Decal10IsDecal; \
     lilBool _Decal10IsLeftOnly; \
     lilBool _Decal10IsRightOnly; \

@@ -2,6 +2,22 @@
 // Decal Processing
 //----------------------------------------------------------------------------------------------------------------------
 
+// Helper function to rotate 2D vector
+float2 lilMoreDecalRotate2D(float2 v, float angle)
+{
+    float s, c;
+    sincos(angle, s, c);
+    return float2(v.x * c - v.y * s, v.x * s + v.y * c);
+}
+
+// Inverse affine transform: applies translate, rotate, scale in reverse order
+// This allows rotation center to follow position while preserving aspect ratio
+float2 lilMoreDecalInvAffineTransform(float2 uv, float2 translate, float angle, float2 scale)
+{
+    scale = max(scale, float2(0.001, 0.001));
+    return lilMoreDecalRotate2D(uv - 0.5 - translate, -angle) / scale + 0.5;
+}
+
 // Helper function to blend colors based on blend mode
 float3 lilMoreDecalBlendColor(float3 baseColor, float3 decalColor, float alpha, uint blendMode)
 {
@@ -13,6 +29,45 @@ float3 lilMoreDecalBlendColor(float3 baseColor, float3 decalColor, float alpha, 
     return lerp(baseColor, decalColor, alpha);
 }
 
+// Custom decal UV calculation using inverse affine transform
+// This approach allows rotation center to follow Position X/Y while preserving aspect ratio
+float2 lilMoreDecalCalcUV(
+    float2 uv,
+    float4 uv_ST,
+    float angle,
+    bool isLeftOnly,
+    bool isRightOnly,
+    bool shouldCopy,
+    bool shouldFlipMirror,
+    bool shouldFlipCopy,
+    bool isRightHand)
+{
+    float2 outUV = uv;
+
+    // Copy (same as lilCalcDecalUV)
+    if(shouldCopy) outUV.x = abs(outUV.x - 0.5) + 0.5;
+
+    // Convert uv_ST to translate and scale
+    // uv_ST.xy = scale (inverted: 1/displayScale)
+    // uv_ST.zw = offset (calculated: -posX*scaleX+0.5)
+    // We need to extract: translate (position) and scale (1/uv_ST.xy)
+    float2 scale = float2(1.0, 1.0) / max(abs(uv_ST.xy), float2(0.001, 0.001));
+    float2 translate = (float2(0.5, 0.5) - uv_ST.zw) / uv_ST.xy;
+    
+    // Apply inverse affine transform: translate → rotate → scale
+    outUV = lilMoreDecalInvAffineTransform(outUV, translate, angle, scale);
+
+    // Flip (same as lilCalcDecalUV)
+    if(shouldFlipCopy && uv.x < 0.5) outUV.x = 1.0 - outUV.x;
+    if(shouldFlipMirror && isRightHand) outUV.x = 1.0 - outUV.x;
+
+    // Hide (same as lilCalcDecalUV)
+    if(isLeftOnly && isRightHand) outUV.x = -1.0;
+    if(isRightOnly && !isRightHand) outUV.x = -1.0;
+
+    return outUV;
+}
+
 // Apply decal to color
 void lilApplyDecal(
     inout lilFragData fd,
@@ -21,10 +76,7 @@ void lilApplyDecal(
     float4 decalColor,
     TEXTURE2D(decalTex),
     float4 decalTex_ST,
-    float4 decalTex_SR,
     float decalTexAngle,
-    float4 decalDecalAnimation,
-    float4 decalDecalSubParam,
     bool decalIsDecal,
     bool decalIsLeftOnly,
     bool decalIsRightOnly,
@@ -36,24 +88,30 @@ void lilApplyDecal(
 {
     if(!useDecal) return;
     
-    float4 decalSample = lilGetSubTex(
-        decalTex,
-        decalTex_ST,
-        decalTex_SR,
-        decalTexAngle,
+    // Calculate UV with custom rotation (around texture center)
+    float2 decalUV = lilMoreDecalCalcUV(
         uv,
-        fd.nv,
-        decalIsDecal,
+        decalTex_ST,
+        decalTexAngle,
         decalIsLeftOnly,
         decalIsRightOnly,
         decalShouldCopy,
         decalShouldFlipMirror,
         decalShouldFlipCopy,
-        false, // isMSDF
-        fd.isRightHand,
-        decalDecalAnimation,
-        decalDecalSubParam
-        LIL_SAMP_IN(samp));
+        fd.isRightHand);
+    
+    // Sample texture
+    float4 decalSample = LIL_SAMPLE_2D(decalTex, samp, decalUV);
+    
+    // Apply decal masking if enabled
+    if(decalIsDecal)
+    {
+        // Check if UV is in 0-1 range (with small tolerance based on normal view)
+        float mask = saturate(0.5 - abs(decalUV.x - 0.5));
+        mask *= saturate(0.5 - abs(decalUV.y - 0.5));
+        mask = saturate(mask / clamp(fwidth(mask), 0.0001, saturate(fd.nv - 0.05)));
+        decalSample.a *= mask;
+    }
     
     float3 decalCol = decalSample.rgb * decalColor.rgb;
     float decalAlpha = decalSample.a * decalColor.a;
@@ -80,10 +138,7 @@ void lilApplyDecal(
                 _Decal1Color, \
                 _Decal1Tex, \
                 _Decal1Tex_ST, \
-                _Decal1Tex_SR, \
                 _Decal1TexAngle, \
-                _Decal1DecalAnimation, \
-                _Decal1DecalSubParam, \
                 _Decal1IsDecal, \
                 _Decal1IsLeftOnly, \
                 _Decal1IsRightOnly, \
@@ -106,10 +161,7 @@ void lilApplyDecal(
                 _Decal2Color, \
                 _Decal2Tex, \
                 _Decal2Tex_ST, \
-                _Decal2Tex_SR, \
                 _Decal2TexAngle, \
-                _Decal2DecalAnimation, \
-                _Decal2DecalSubParam, \
                 _Decal2IsDecal, \
                 _Decal2IsLeftOnly, \
                 _Decal2IsRightOnly, \
@@ -132,10 +184,7 @@ void lilApplyDecal(
                 _Decal3Color, \
                 _Decal3Tex, \
                 _Decal3Tex_ST, \
-                _Decal3Tex_SR, \
                 _Decal3TexAngle, \
-                _Decal3DecalAnimation, \
-                _Decal3DecalSubParam, \
                 _Decal3IsDecal, \
                 _Decal3IsLeftOnly, \
                 _Decal3IsRightOnly, \
@@ -158,10 +207,7 @@ void lilApplyDecal(
                 _Decal4Color, \
                 _Decal4Tex, \
                 _Decal4Tex_ST, \
-                _Decal4Tex_SR, \
                 _Decal4TexAngle, \
-                _Decal4DecalAnimation, \
-                _Decal4DecalSubParam, \
                 _Decal4IsDecal, \
                 _Decal4IsLeftOnly, \
                 _Decal4IsRightOnly, \
@@ -184,10 +230,7 @@ void lilApplyDecal(
                 _Decal5Color, \
                 _Decal5Tex, \
                 _Decal5Tex_ST, \
-                _Decal5Tex_SR, \
                 _Decal5TexAngle, \
-                _Decal5DecalAnimation, \
-                _Decal5DecalSubParam, \
                 _Decal5IsDecal, \
                 _Decal5IsLeftOnly, \
                 _Decal5IsRightOnly, \
@@ -210,10 +253,7 @@ void lilApplyDecal(
                 _Decal6Color, \
                 _Decal6Tex, \
                 _Decal6Tex_ST, \
-                _Decal6Tex_SR, \
                 _Decal6TexAngle, \
-                _Decal6DecalAnimation, \
-                _Decal6DecalSubParam, \
                 _Decal6IsDecal, \
                 _Decal6IsLeftOnly, \
                 _Decal6IsRightOnly, \
@@ -236,10 +276,7 @@ void lilApplyDecal(
                 _Decal7Color, \
                 _Decal7Tex, \
                 _Decal7Tex_ST, \
-                _Decal7Tex_SR, \
                 _Decal7TexAngle, \
-                _Decal7DecalAnimation, \
-                _Decal7DecalSubParam, \
                 _Decal7IsDecal, \
                 _Decal7IsLeftOnly, \
                 _Decal7IsRightOnly, \
@@ -262,10 +299,7 @@ void lilApplyDecal(
                 _Decal8Color, \
                 _Decal8Tex, \
                 _Decal8Tex_ST, \
-                _Decal8Tex_SR, \
                 _Decal8TexAngle, \
-                _Decal8DecalAnimation, \
-                _Decal8DecalSubParam, \
                 _Decal8IsDecal, \
                 _Decal8IsLeftOnly, \
                 _Decal8IsRightOnly, \
@@ -288,10 +322,7 @@ void lilApplyDecal(
                 _Decal9Color, \
                 _Decal9Tex, \
                 _Decal9Tex_ST, \
-                _Decal9Tex_SR, \
                 _Decal9TexAngle, \
-                _Decal9DecalAnimation, \
-                _Decal9DecalSubParam, \
                 _Decal9IsDecal, \
                 _Decal9IsLeftOnly, \
                 _Decal9IsRightOnly, \
@@ -314,10 +345,7 @@ void lilApplyDecal(
                 _Decal10Color, \
                 _Decal10Tex, \
                 _Decal10Tex_ST, \
-                _Decal10Tex_SR, \
                 _Decal10TexAngle, \
-                _Decal10DecalAnimation, \
-                _Decal10DecalSubParam, \
                 _Decal10IsDecal, \
                 _Decal10IsLeftOnly, \
                 _Decal10IsRightOnly, \
