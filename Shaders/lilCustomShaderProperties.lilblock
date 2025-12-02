@@ -1,4 +1,145 @@
 
         //----------------------------------------------------------------------------------------------------------------------
-        // Custom Properties
-        //_CustomVariable ("Custom Variable", Float) = 0
+        // Decal Count Control
+        [IntRange]      _DecalCount         ("Decal Count (0-10)", Range(0, 10)) = 3
+        
+        //----------------------------------------------------------------------------------------------------------------------
+        // Custom Properties - Decal 1
+        _Decal1Color                        ("Color", Color) = (1,1,1,1)
+        _Decal1Tex                          ("Texture", 2D) = "white" {}
+        [lilUVAnim]     _Decal1Tex_ST       ("Decal 1 Tex", Vector) = (1,1,0,0)
+        [lilAngle]      _Decal1TexAngle     ("Angle", Float) = 0
+        [lilToggle]     _Decal1UseAnimation ("Animation", Int) = 0
+        [lilDecalAnim]  _Decal1TexDecalAnimation ("sDecalAnimations", Vector) = (1,1,1,30)
+        [lilToggle]     _Decal1ShouldCopy   ("Copy", Int) = 0
+        [lilToggle]     _Decal1ShouldFlipCopy   ("Flip Copy", Int) = 0
+        [lilToggle]     _Decal1TexIsMSDF    ("sAsMSDF", Int) = 0
+        [lilEnum]       _Decal1BlendMode    ("Blend Mode|Normal|Add|Screen|Multiply", Int) = 0
+        [lilEnum]       _Decal1Tex_UVMode   ("UV Mode|UV0|UV1|UV2|UV3", Int) = 0
+        [lilToggle]     _Decal1SyncScale    ("Sync Scale X/Y", Int) = 0
+        
+        // Custom Properties - Decal 2
+        _Decal2Color                        ("Color", Color) = (1,1,1,1)
+        _Decal2Tex                          ("Texture", 2D) = "white" {}
+        [lilUVAnim]     _Decal2Tex_ST       ("Decal 2 Tex", Vector) = (1,1,0,0)
+        [lilAngle]      _Decal2TexAngle     ("Angle", Float) = 0
+        [lilToggle]     _Decal2UseAnimation ("Animation", Int) = 0
+        [lilDecalAnim]  _Decal2TexDecalAnimation ("sDecalAnimations", Vector) = (1,1,1,30)
+        [lilToggle]     _Decal2ShouldCopy   ("Copy", Int) = 0
+        [lilToggle]     _Decal2ShouldFlipCopy   ("Flip Copy", Int) = 0
+        [lilToggle]     _Decal2TexIsMSDF    ("sAsMSDF", Int) = 0
+        [lilEnum]       _Decal2BlendMode    ("Blend Mode|Normal|Add|Screen|Multiply", Int) = 0
+        [lilEnum]       _Decal2Tex_UVMode   ("UV Mode|UV0|UV1|UV2|UV3", Int) = 0
+        [lilToggle]     _Decal2SyncScale    ("Sync Scale X/Y", Int) = 0
+        
+        // Custom Properties - Decal 3
+        _Decal3Color                        ("Color", Color) = (1,1,1,1)
+        _Decal3Tex                          ("Texture", 2D) = "white" {}
+        [lilUVAnim]     _Decal3Tex_ST       ("Decal 3 Tex", Vector) = (1,1,0,0)
+        [lilAngle]      _Decal3TexAngle     ("Angle", Float) = 0
+        [lilToggle]     _Decal3UseAnimation ("Animation", Int) = 0
+        [lilDecalAnim]  _Decal3TexDecalAnimation ("sDecalAnimations", Vector) = (1,1,1,30)
+        [lilToggle]     _Decal3ShouldCopy   ("Copy", Int) = 0
+        [lilToggle]     _Decal3ShouldFlipCopy   ("Flip Copy", Int) = 0
+        [lilToggle]     _Decal3TexIsMSDF    ("sAsMSDF", Int) = 0
+        [lilEnum]       _Decal3BlendMode    ("Blend Mode|Normal|Add|Screen|Multiply", Int) = 0
+        [lilEnum]       _Decal3Tex_UVMode   ("UV Mode|UV0|UV1|UV2|UV3", Int) = 0
+        [lilToggle]     _Decal3SyncScale    ("Sync Scale X/Y", Int) = 0
+        
+        // Custom Properties - Decal 4
+        _Decal4Color                        ("Color", Color) = (1,1,1,1)
+        _Decal4Tex                          ("Texture", 2D) = "white" {}
+        [lilUVAnim]     _Decal4Tex_ST       ("Decal 4 Tex", Vector) = (1,1,0,0)
+        [lilAngle]      _Decal4TexAngle     ("Angle", Float) = 0
+        [lilToggle]     _Decal4UseAnimation ("Animation", Int) = 0
+        [lilDecalAnim]  _Decal4TexDecalAnimation ("sDecalAnimations", Vector) = (1,1,1,30)
+        [lilToggle]     _Decal4ShouldCopy   ("Copy", Int) = 0
+        [lilToggle]     _Decal4ShouldFlipCopy   ("Flip Copy", Int) = 0
+        [lilToggle]     _Decal4TexIsMSDF    ("sAsMSDF", Int) = 0
+        [lilEnum]       _Decal4BlendMode    ("Blend Mode|Normal|Add|Screen|Multiply", Int) = 0
+        [lilEnum]       _Decal4Tex_UVMode   ("UV Mode|UV0|UV1|UV2|UV3", Int) = 0
+        [lilToggle]     _Decal4SyncScale    ("Sync Scale X/Y", Int) = 0
+        
+        // Custom Properties - Decal 5
+        _Decal5Color                        ("Color", Color) = (1,1,1,1)
+        _Decal5Tex                          ("Texture", 2D) = "white" {}
+        [lilUVAnim]     _Decal5Tex_ST       ("Decal 5 Tex", Vector) = (1,1,0,0)
+        [lilAngle]      _Decal5TexAngle     ("Angle", Float) = 0
+        [lilToggle]     _Decal5UseAnimation ("Animation", Int) = 0
+        [lilDecalAnim]  _Decal5TexDecalAnimation ("sDecalAnimations", Vector) = (1,1,1,30)
+        [lilToggle]     _Decal5ShouldCopy   ("Copy", Int) = 0
+        [lilToggle]     _Decal5ShouldFlipCopy   ("Flip Copy", Int) = 0
+        [lilToggle]     _Decal5TexIsMSDF    ("sAsMSDF", Int) = 0
+        [lilEnum]       _Decal5BlendMode    ("Blend Mode|Normal|Add|Screen|Multiply", Int) = 0
+        [lilEnum]       _Decal5Tex_UVMode   ("UV Mode|UV0|UV1|UV2|UV3", Int) = 0
+        [lilToggle]     _Decal5SyncScale    ("Sync Scale X/Y", Int) = 0
+        
+        // Custom Properties - Decal 6
+        _Decal6Color                        ("Color", Color) = (1,1,1,1)
+        _Decal6Tex                          ("Texture", 2D) = "white" {}
+        [lilUVAnim]     _Decal6Tex_ST       ("Decal 6 Tex", Vector) = (1,1,0,0)
+        [lilAngle]      _Decal6TexAngle     ("Angle", Float) = 0
+        [lilToggle]     _Decal6UseAnimation ("Animation", Int) = 0
+        [lilDecalAnim]  _Decal6TexDecalAnimation ("sDecalAnimations", Vector) = (1,1,1,30)
+        [lilToggle]     _Decal6ShouldCopy   ("Copy", Int) = 0
+        [lilToggle]     _Decal6ShouldFlipCopy   ("Flip Copy", Int) = 0
+        [lilToggle]     _Decal6TexIsMSDF    ("sAsMSDF", Int) = 0
+        [lilEnum]       _Decal6BlendMode    ("Blend Mode|Normal|Add|Screen|Multiply", Int) = 0
+        [lilEnum]       _Decal6Tex_UVMode   ("UV Mode|UV0|UV1|UV2|UV3", Int) = 0
+        [lilToggle]     _Decal6SyncScale    ("Sync Scale X/Y", Int) = 0
+        
+        // Custom Properties - Decal 7
+        _Decal7Color                        ("Color", Color) = (1,1,1,1)
+        _Decal7Tex                          ("Texture", 2D) = "white" {}
+        [lilUVAnim]     _Decal7Tex_ST       ("Decal 7 Tex", Vector) = (1,1,0,0)
+        [lilAngle]      _Decal7TexAngle     ("Angle", Float) = 0
+        [lilToggle]     _Decal7UseAnimation ("Animation", Int) = 0
+        [lilDecalAnim]  _Decal7TexDecalAnimation ("sDecalAnimations", Vector) = (1,1,1,30)
+        [lilToggle]     _Decal7ShouldCopy   ("Copy", Int) = 0
+        [lilToggle]     _Decal7ShouldFlipCopy   ("Flip Copy", Int) = 0
+        [lilToggle]     _Decal7TexIsMSDF    ("sAsMSDF", Int) = 0
+        [lilEnum]       _Decal7BlendMode    ("Blend Mode|Normal|Add|Screen|Multiply", Int) = 0
+        [lilEnum]       _Decal7Tex_UVMode   ("UV Mode|UV0|UV1|UV2|UV3", Int) = 0
+        [lilToggle]     _Decal7SyncScale    ("Sync Scale X/Y", Int) = 0
+        
+        // Custom Properties - Decal 8
+        _Decal8Color                        ("Color", Color) = (1,1,1,1)
+        _Decal8Tex                          ("Texture", 2D) = "white" {}
+        [lilUVAnim]     _Decal8Tex_ST       ("Decal 8 Tex", Vector) = (1,1,0,0)
+        [lilAngle]      _Decal8TexAngle     ("Angle", Float) = 0
+        [lilToggle]     _Decal8UseAnimation ("Animation", Int) = 0
+        [lilDecalAnim]  _Decal8TexDecalAnimation ("sDecalAnimations", Vector) = (1,1,1,30)
+        [lilToggle]     _Decal8ShouldCopy   ("Copy", Int) = 0
+        [lilToggle]     _Decal8ShouldFlipCopy   ("Flip Copy", Int) = 0
+        [lilToggle]     _Decal8TexIsMSDF    ("sAsMSDF", Int) = 0
+        [lilEnum]       _Decal8BlendMode    ("Blend Mode|Normal|Add|Screen|Multiply", Int) = 0
+        [lilEnum]       _Decal8Tex_UVMode   ("UV Mode|UV0|UV1|UV2|UV3", Int) = 0
+        [lilToggle]     _Decal8SyncScale    ("Sync Scale X/Y", Int) = 0
+        
+        // Custom Properties - Decal 9
+        _Decal9Color                        ("Color", Color) = (1,1,1,1)
+        _Decal9Tex                          ("Texture", 2D) = "white" {}
+        [lilUVAnim]     _Decal9Tex_ST       ("Decal 9 Tex", Vector) = (1,1,0,0)
+        [lilAngle]      _Decal9TexAngle     ("Angle", Float) = 0
+        [lilToggle]     _Decal9UseAnimation ("Animation", Int) = 0
+        [lilDecalAnim]  _Decal9TexDecalAnimation ("sDecalAnimations", Vector) = (1,1,1,30)
+        [lilToggle]     _Decal9ShouldCopy   ("Copy", Int) = 0
+        [lilToggle]     _Decal9ShouldFlipCopy   ("Flip Copy", Int) = 0
+        [lilToggle]     _Decal9TexIsMSDF    ("sAsMSDF", Int) = 0
+        [lilEnum]       _Decal9BlendMode    ("Blend Mode|Normal|Add|Screen|Multiply", Int) = 0
+        [lilEnum]       _Decal9Tex_UVMode   ("UV Mode|UV0|UV1|UV2|UV3", Int) = 0
+        [lilToggle]     _Decal9SyncScale    ("Sync Scale X/Y", Int) = 0
+        
+        // Custom Properties - Decal 10
+        _Decal10Color                       ("Color", Color) = (1,1,1,1)
+        _Decal10Tex                         ("Texture", 2D) = "white" {}
+        [lilUVAnim]     _Decal10Tex_ST      ("Decal 10 Tex", Vector) = (1,1,0,0)
+        [lilAngle]      _Decal10TexAngle    ("Angle", Float) = 0
+        [lilToggle]     _Decal10UseAnimation ("Animation", Int) = 0
+        [lilDecalAnim]  _Decal10TexDecalAnimation ("sDecalAnimations", Vector) = (1,1,1,30)
+        [lilToggle]     _Decal10ShouldCopy  ("Copy", Int) = 0
+        [lilToggle]     _Decal10ShouldFlipCopy  ("Flip Copy", Int) = 0
+        [lilToggle]     _Decal10TexIsMSDF   ("sAsMSDF", Int) = 0
+        [lilEnum]       _Decal10BlendMode   ("Blend Mode|Normal|Add|Screen|Multiply", Int) = 0
+        [lilEnum]       _Decal10Tex_UVMode  ("UV Mode|UV0|UV1|UV2|UV3", Int) = 0
+        [lilToggle]     _Decal10SyncScale   ("Sync Scale X/Y", Int) = 0

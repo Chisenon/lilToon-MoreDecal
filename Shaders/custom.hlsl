@@ -2,42 +2,134 @@
 // Macro
 
 // Custom variables
-//#define LIL_CUSTOM_PROPERTIES \
-//    float _CustomVariable;
-#define LIL_CUSTOM_PROPERTIES
+#define LIL_CUSTOM_PROPERTIES \
+    float _DecalCount; \
+    float4 _Decal1Color; \
+    float4 _Decal1Tex_ST; \
+    float _Decal1TexAngle; \
+    lilBool _Decal1ShouldCopy; \
+    lilBool _Decal1ShouldFlipCopy; \
+    uint _Decal1BlendMode; \
+    uint _Decal1Tex_UVMode; \
+    float4 _Decal2Color; \
+    float4 _Decal2Tex_ST; \
+    float _Decal2TexAngle; \
+    lilBool _Decal2ShouldCopy; \
+    lilBool _Decal2ShouldFlipCopy; \
+    uint _Decal2BlendMode; \
+    uint _Decal2Tex_UVMode; \
+    float4 _Decal3Color; \
+    float4 _Decal3Tex_ST; \
+    float _Decal3TexAngle; \
+    lilBool _Decal3ShouldCopy; \
+    lilBool _Decal3ShouldFlipCopy; \
+    uint _Decal3BlendMode; \
+    uint _Decal3Tex_UVMode; \
+    float4 _Decal4Color; \
+    float4 _Decal4Tex_ST; \
+    float _Decal4TexAngle; \
+    lilBool _Decal4ShouldCopy; \
+    lilBool _Decal4ShouldFlipCopy; \
+    uint _Decal4BlendMode; \
+    uint _Decal4Tex_UVMode; \
+    float4 _Decal5Color; \
+    float4 _Decal5Tex_ST; \
+    float _Decal5TexAngle; \
+    lilBool _Decal5ShouldCopy; \
+    lilBool _Decal5ShouldFlipCopy; \
+    uint _Decal5BlendMode; \
+    uint _Decal5Tex_UVMode; \
+    float4 _Decal6Color; \
+    float4 _Decal6Tex_ST; \
+    float _Decal6TexAngle; \
+    lilBool _Decal6ShouldCopy; \
+    lilBool _Decal6ShouldFlipCopy; \
+    uint _Decal6BlendMode; \
+    uint _Decal6Tex_UVMode; \
+    float4 _Decal7Color; \
+    float4 _Decal7Tex_ST; \
+    float _Decal7TexAngle; \
+    lilBool _Decal7ShouldCopy; \
+    lilBool _Decal7ShouldFlipCopy; \
+    uint _Decal7BlendMode; \
+    uint _Decal7Tex_UVMode; \
+    float4 _Decal8Color; \
+    float4 _Decal8Tex_ST; \
+    float _Decal8TexAngle; \
+    lilBool _Decal8ShouldCopy; \
+    lilBool _Decal8ShouldFlipCopy; \
+    uint _Decal8BlendMode; \
+    uint _Decal8Tex_UVMode; \
+    float4 _Decal9Color; \
+    float4 _Decal9Tex_ST; \
+    float _Decal9TexAngle; \
+    lilBool _Decal9ShouldCopy; \
+    lilBool _Decal9ShouldFlipCopy; \
+    uint _Decal9BlendMode; \
+    uint _Decal9Tex_UVMode; \
+    float4 _Decal10Color; \
+    float4 _Decal10Tex_ST; \
+    float _Decal10TexAngle; \
+    lilBool _Decal10ShouldCopy; \
+    lilBool _Decal10ShouldFlipCopy; \
+    uint _Decal10BlendMode; \
+    uint _Decal10Tex_UVMode; \
+    lilBool _Decal1TexIsMSDF; \
+    lilBool _Decal2TexIsMSDF; \
+    lilBool _Decal3TexIsMSDF; \
+    lilBool _Decal4TexIsMSDF; \
+    lilBool _Decal5TexIsMSDF; \
+    lilBool _Decal6TexIsMSDF; \
+    lilBool _Decal7TexIsMSDF; \
+    lilBool _Decal8TexIsMSDF; \
+    lilBool _Decal9TexIsMSDF; \
+    lilBool _Decal10TexIsMSDF; \
+    lilBool _Decal1UseAnimation; \
+    lilBool _Decal2UseAnimation; \
+    lilBool _Decal3UseAnimation; \
+    lilBool _Decal4UseAnimation; \
+    lilBool _Decal5UseAnimation; \
+    lilBool _Decal6UseAnimation; \
+    lilBool _Decal7UseAnimation; \
+    lilBool _Decal8UseAnimation; \
+    lilBool _Decal9UseAnimation; \
+    lilBool _Decal10UseAnimation; \
+    float4 _Decal1TexDecalAnimation; \
+    float4 _Decal2TexDecalAnimation; \
+    float4 _Decal3TexDecalAnimation; \
+    float4 _Decal4TexDecalAnimation; \
+    float4 _Decal5TexDecalAnimation; \
+    float4 _Decal6TexDecalAnimation; \
+    float4 _Decal7TexDecalAnimation; \
+    float4 _Decal8TexDecalAnimation; \
+    float4 _Decal9TexDecalAnimation; \
+    float4 _Decal10TexDecalAnimation;
 
 // Custom textures
-#define LIL_CUSTOM_TEXTURES
+#define LIL_CUSTOM_TEXTURES \
+    TEXTURE2D(_Decal1Tex); \
+    TEXTURE2D(_Decal2Tex); \
+    TEXTURE2D(_Decal3Tex); \
+    TEXTURE2D(_Decal4Tex); \
+    TEXTURE2D(_Decal5Tex); \
+    TEXTURE2D(_Decal6Tex); \
+    TEXTURE2D(_Decal7Tex); \
+    TEXTURE2D(_Decal8Tex); \
+    TEXTURE2D(_Decal9Tex); \
+    TEXTURE2D(_Decal10Tex); \
 
 // Add vertex shader input
-//#define LIL_REQUIRE_APP_POSITION
-//#define LIL_REQUIRE_APP_TEXCOORD0
-//#define LIL_REQUIRE_APP_TEXCOORD1
-//#define LIL_REQUIRE_APP_TEXCOORD2
-//#define LIL_REQUIRE_APP_TEXCOORD3
-//#define LIL_REQUIRE_APP_TEXCOORD4
-//#define LIL_REQUIRE_APP_TEXCOORD5
-//#define LIL_REQUIRE_APP_TEXCOORD6
-//#define LIL_REQUIRE_APP_TEXCOORD7
-//#define LIL_REQUIRE_APP_COLOR
-//#define LIL_REQUIRE_APP_NORMAL
-//#define LIL_REQUIRE_APP_TANGENT
-//#define LIL_REQUIRE_APP_VERTEXID
 
 // Add vertex shader output
-//#define LIL_V2F_FORCE_TEXCOORD0
-//#define LIL_V2F_FORCE_TEXCOORD1
-//#define LIL_V2F_FORCE_POSITION_OS
-//#define LIL_V2F_FORCE_POSITION_WS
-//#define LIL_V2F_FORCE_POSITION_SS
-//#define LIL_V2F_FORCE_NORMAL
-//#define LIL_V2F_FORCE_TANGENT
-//#define LIL_V2F_FORCE_BITANGENT
-//#define LIL_CUSTOM_V2F_MEMBER(id0,id1,id2,id3,id4,id5,id6,id7)
 
 // Add vertex copy
 #define LIL_CUSTOM_VERT_COPY
 
+// Map sampler alias for decals to an inline sampler from lil_common_input.hlsl
+// Define it here (outside of LIL_CUSTOM_TEXTURES macro) so the preprocessor sees it directly.
+#ifndef sampler_DecalTex
+#define sampler_DecalTex sampler_linear_repeat
+#endif
 // Inserting a process into the vertex shader
 //#define LIL_CUSTOM_VERTEX_OS
 //#define LIL_CUSTOM_VERTEX_WS
