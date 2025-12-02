@@ -121,8 +121,8 @@ void lilApplyDecal(
         { \
             float2 decalUV = fd.uv0; \
             if(_Decal1Tex_UVMode == 1) decalUV = fd.uv1; \
-            if(_Decal1Tex_UVMode == 2) decalUV = fd.uv2; \
-            if(_Decal1Tex_UVMode == 3) decalUV = fd.uv3; \
+            else if(_Decal1Tex_UVMode == 2) decalUV = fd.uv2; \
+            else if(_Decal1Tex_UVMode == 3) decalUV = fd.uv3; \
             lilApplyDecal( \
                 fd, \
                 decalUV, \
@@ -142,8 +142,8 @@ void lilApplyDecal(
         { \
             float2 decalUV = fd.uv0; \
             if(_Decal2Tex_UVMode == 1) decalUV = fd.uv1; \
-            if(_Decal2Tex_UVMode == 2) decalUV = fd.uv2; \
-            if(_Decal2Tex_UVMode == 3) decalUV = fd.uv3; \
+            else if(_Decal2Tex_UVMode == 2) decalUV = fd.uv2; \
+            else if(_Decal2Tex_UVMode == 3) decalUV = fd.uv3; \
             lilApplyDecal( \
                 fd, \
                 decalUV, \
@@ -163,8 +163,8 @@ void lilApplyDecal(
         { \
             float2 decalUV = fd.uv0; \
             if(_Decal3Tex_UVMode == 1) decalUV = fd.uv1; \
-            if(_Decal3Tex_UVMode == 2) decalUV = fd.uv2; \
-            if(_Decal3Tex_UVMode == 3) decalUV = fd.uv3; \
+            else if(_Decal3Tex_UVMode == 2) decalUV = fd.uv2; \
+            else if(_Decal3Tex_UVMode == 3) decalUV = fd.uv3; \
             lilApplyDecal( \
                 fd, \
                 decalUV, \
@@ -184,8 +184,8 @@ void lilApplyDecal(
         { \
             float2 decalUV = fd.uv0; \
             if(_Decal4Tex_UVMode == 1) decalUV = fd.uv1; \
-            if(_Decal4Tex_UVMode == 2) decalUV = fd.uv2; \
-            if(_Decal4Tex_UVMode == 3) decalUV = fd.uv3; \
+            else if(_Decal4Tex_UVMode == 2) decalUV = fd.uv2; \
+            else if(_Decal4Tex_UVMode == 3) decalUV = fd.uv3; \
             lilApplyDecal( \
                 fd, \
                 decalUV, \
@@ -205,8 +205,8 @@ void lilApplyDecal(
         { \
             float2 decalUV = fd.uv0; \
             if(_Decal5Tex_UVMode == 1) decalUV = fd.uv1; \
-            if(_Decal5Tex_UVMode == 2) decalUV = fd.uv2; \
-            if(_Decal5Tex_UVMode == 3) decalUV = fd.uv3; \
+            else if(_Decal5Tex_UVMode == 2) decalUV = fd.uv2; \
+            else if(_Decal5Tex_UVMode == 3) decalUV = fd.uv3; \
             lilApplyDecal( \
                 fd, \
                 decalUV, \
@@ -226,8 +226,8 @@ void lilApplyDecal(
         { \
             float2 decalUV = fd.uv0; \
             if(_Decal6Tex_UVMode == 1) decalUV = fd.uv1; \
-            if(_Decal6Tex_UVMode == 2) decalUV = fd.uv2; \
-            if(_Decal6Tex_UVMode == 3) decalUV = fd.uv3; \
+            else if(_Decal6Tex_UVMode == 2) decalUV = fd.uv2; \
+            else if(_Decal6Tex_UVMode == 3) decalUV = fd.uv3; \
             lilApplyDecal( \
                 fd, \
                 decalUV, \
@@ -247,8 +247,8 @@ void lilApplyDecal(
         { \
             float2 decalUV = fd.uv0; \
             if(_Decal7Tex_UVMode == 1) decalUV = fd.uv1; \
-            if(_Decal7Tex_UVMode == 2) decalUV = fd.uv2; \
-            if(_Decal7Tex_UVMode == 3) decalUV = fd.uv3; \
+            else if(_Decal7Tex_UVMode == 2) decalUV = fd.uv2; \
+            else if(_Decal7Tex_UVMode == 3) decalUV = fd.uv3; \
             lilApplyDecal( \
                 fd, \
                 decalUV, \
@@ -268,8 +268,8 @@ void lilApplyDecal(
         { \
             float2 decalUV = fd.uv0; \
             if(_Decal8Tex_UVMode == 1) decalUV = fd.uv1; \
-            if(_Decal8Tex_UVMode == 2) decalUV = fd.uv2; \
-            if(_Decal8Tex_UVMode == 3) decalUV = fd.uv3; \
+            else if(_Decal8Tex_UVMode == 2) decalUV = fd.uv2; \
+            else if(_Decal8Tex_UVMode == 3) decalUV = fd.uv3; \
             lilApplyDecal( \
                 fd, \
                 decalUV, \
@@ -289,8 +289,8 @@ void lilApplyDecal(
         { \
             float2 decalUV = fd.uv0; \
             if(_Decal9Tex_UVMode == 1) decalUV = fd.uv1; \
-            if(_Decal9Tex_UVMode == 2) decalUV = fd.uv2; \
-            if(_Decal9Tex_UVMode == 3) decalUV = fd.uv3; \
+            else if(_Decal9Tex_UVMode == 2) decalUV = fd.uv2; \
+            else if(_Decal9Tex_UVMode == 3) decalUV = fd.uv3; \
             lilApplyDecal( \
                 fd, \
                 decalUV, \
@@ -310,8 +310,8 @@ void lilApplyDecal(
         { \
             float2 decalUV = fd.uv0; \
             if(_Decal10Tex_UVMode == 1) decalUV = fd.uv1; \
-            if(_Decal10Tex_UVMode == 2) decalUV = fd.uv2; \
-            if(_Decal10Tex_UVMode == 3) decalUV = fd.uv3; \
+            else if(_Decal10Tex_UVMode == 2) decalUV = fd.uv2; \
+            else if(_Decal10Tex_UVMode == 3) decalUV = fd.uv3; \
             lilApplyDecal( \
                 fd, \
                 decalUV, \
