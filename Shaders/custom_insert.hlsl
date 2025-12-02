@@ -14,7 +14,9 @@ float2 lilMoreDecalRotate2D(float2 v, float angle)
 // This allows rotation center to follow position while preserving aspect ratio
 float2 lilMoreDecalInvAffineTransform(float2 uv, float2 translate, float angle, float2 scale)
 {
-    scale = max(scale, float2(0.001, 0.001));
+    // Clamp scale to avoid division by zero, but preserve sign for flipping
+    scale.x = abs(scale.x) < 0.001 ? sign(scale.x) * 0.001 : scale.x;
+    scale.y = abs(scale.y) < 0.001 ? sign(scale.y) * 0.001 : scale.y;
     return lilMoreDecalRotate2D(uv - 0.5 - translate, angle) / scale + 0.5;
 }
 
@@ -47,7 +49,8 @@ float2 lilMoreDecalCalcUV(
     // uv_ST.xy = scale (inverted: 1/displayScale)
     // uv_ST.zw = offset (calculated: -posX*scaleX+0.5)
     // We need to extract: translate (position) and scale (1/uv_ST.xy)
-    float2 scale = float2(1.0, 1.0) / max(abs(uv_ST.xy), float2(0.001, 0.001));
+    // Preserve sign for flipping when scale is negative (0 to -1 range)
+    float2 scale = float2(1.0, 1.0) / uv_ST.xy;
     float2 translate = (float2(0.5, 0.5) - uv_ST.zw) / uv_ST.xy;
     
     // Apply inverse affine transform: translate → rotate → scale
