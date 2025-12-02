@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace lilToon
 {
-    public class lilNoneInspector : lilToonInspector
+    public class MoreDecalInspector : lilToonInspector
     {
         // Decal Count
         MaterialProperty decalCount;
@@ -25,7 +25,8 @@ namespace lilToon
         MaterialProperty[] decalAnimation = new MaterialProperty[MAX_DECALS];
 
         private static bool[] isShowDecal = new bool[MAX_DECALS];
-        private const string shaderName = "ChiseNote/lilNone";
+        private static bool isShowDecalCountControl = true;
+        private const string shaderName = "ChiseNote/MoreDecal";
 
         protected override void LoadCustomProperties(MaterialProperty[] props, Material material)
         {
@@ -67,28 +68,35 @@ namespace lilToon
             // customToggleFont label for box
 
             // Decal Count Control at Top
-            EditorGUILayout.BeginVertical(boxOuter);
-            EditorGUILayout.LabelField("Decal Count Control", customToggleFont);
-            EditorGUILayout.BeginVertical(boxInnerHalf);
-            
-            EditorGUI.BeginChangeCheck();
-            m_MaterialEditor.ShaderProperty(decalCount, "Decal Count (1-10)");
-            if(EditorGUI.EndChangeCheck())
+            isShowDecalCountControl = Foldout("Decal Count Control", "Decal Count Control", isShowDecalCountControl);
+            if(isShowDecalCountControl)
             {
-                decalCount.floatValue = Mathf.Clamp(decalCount.floatValue, 1, MAX_DECALS);
+                EditorGUILayout.BeginVertical(boxOuter);
+                EditorGUILayout.LabelField("", customToggleFont);
+                EditorGUILayout.BeginVertical(boxInnerHalf);
+                
+                EditorGUI.BeginChangeCheck();
+                m_MaterialEditor.ShaderProperty(decalCount, "Add Decal (0-10)");
+                if(EditorGUI.EndChangeCheck())
+                {
+                    decalCount.floatValue = Mathf.Clamp(decalCount.floatValue, 0, MAX_DECALS);
+                }
+                
+                EditorGUILayout.EndVertical();
+                EditorGUILayout.EndVertical();
             }
-            
-            EditorGUILayout.EndVertical();
-            EditorGUILayout.EndVertical();
 
             // Get current decal count
             int currentDecalCount = Mathf.RoundToInt(decalCount.floatValue);
 
-            // Draw decal sections dynamically based on count
-            for(int i = 0; i < currentDecalCount; i++)
+            // Draw decal sections dynamically based on count (only if count > 0)
+            if(currentDecalCount > 0)
             {
-                int num = i + 1;
-                DrawDecalSection(material, i, num);
+                for(int i = 0; i < currentDecalCount; i++)
+                {
+                    int num = i + 1;
+                    DrawDecalSection(material, i, num);
+                }
             }
         }
 
@@ -264,6 +272,10 @@ namespace lilToon
                         
                         EditorGUI.indentLevel--;
                     }
+
+                    DrawLine();
+
+                    
                     
                     EditorGUI.indentLevel--;
 
